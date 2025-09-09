@@ -82,5 +82,3 @@ Unit tests cover booking flow validation for all three verticals.
 **Long term**: Microservices, caching, mobile app
 
 ---
-
-**Built for the HighLevel Lead Frontend Engineer position**
