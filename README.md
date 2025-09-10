@@ -59,20 +59,98 @@ npm test
 - **Responsive**: Mobile and desktop
 - **Error handling**: Graceful degradation
 
-## Widget Integration
+## Embeddable Widget
+
+The platform provides a simple script snippet that can be embedded on any website:
 
 ```html
 <div id="ghl-booking" data-config="/configs/salon.json"></div>
 <script src="/widget.js" async></script>
 ```
 
+### Widget Features
+- **Fetches config** - Loads configuration from API endpoints
+- **Renders SSR output** - Displays server-side rendered booking interface
+- **Hydrates interactions** - Enables client-side interactivity after load
+- **Cross-domain compatible** - Works on any external website
+
+### Testing the Widget
+
+#### 1. Start the Development Environment
+```bash
+# Terminal 1: Start mock API server
+npm run start
+
+# Terminal 2: Start Nuxt development server
+npm run dev
+```
+
+#### 2. Test the Widget Demo
+Open: `http://localhost:3000/demo.html`
+
+This demonstrates the widget working with your exact code snippet.
+
+#### 3. Test Different Verticals
+The widget supports multiple business verticals:
+
+**Salon Widget:**
+```html
+<div id="ghl-booking" data-config="/configs/salon.json"></div>
+<script src="/widget.js" async></script>
+```
+
+**Class Widget:**
+```html
+<div id="ghl-booking" data-config="/configs/class.json"></div>
+<script src="/widget.js" async></script>
+```
+
+**Rental Widget:**
+```html
+<div id="ghl-booking" data-config="/configs/rental.json"></div>
+<script src="/widget.js" async></script>
+```
+
+#### 4. Test Direct Booking Pages
+- **Salon:** `http://localhost:3000/booking/salon`
+- **Class:** `http://localhost:3000/booking/class`
+- **Rental:** `http://localhost:3000/booking/rental`
+
+#### 5. Test on External Websites
+Create a simple HTML file with the widget code and open it in your browser. The widget will automatically:
+- Find the container element
+- Load the appropriate configuration
+- Create an iframe pointing to the booking page
+- Handle all user interactions
+
+### Widget Configuration
+
+The widget uses JSON configuration files located in `/configs/`:
+- `salon.json` - Salon booking configuration
+- `class.json` - Class booking configuration  
+- `rental.json` - Rental booking configuration
+
+Each configuration defines:
+- Business branding and theming
+- Available services/classes/items
+- Providers and resources
+- Booking constraints and policies
+- API endpoints for data fetching
+
 ## Testing
 
 ```bash
+# Run unit tests
 npm test
+
+# Test widget functionality
+npm run test:widget
+
+# Run all tests
+npm run test:all
 ```
 
-Unit tests cover booking flow validation for all three verticals.
+Unit tests cover booking flow validation for all three verticals and widget integration.
 
 ## Production Roadmap
 

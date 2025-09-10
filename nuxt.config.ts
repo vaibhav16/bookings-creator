@@ -8,5 +8,7 @@ export default defineNuxtConfig({
         changeOrigin: true
       }
     }
-  }
+  },
+  // Ensure static files are served from public directory
+  ssr: true
 })
